@@ -1,24 +1,45 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-            x:Class="RecipeApp.MainPage">
+             x:Class="RecipeApp.MainPage">
 
-    <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
-        </Frame>
-        <Label Text="Start degrgrgveloping now" FontSize="Title" Padding="30,10,30,10"/>
-        <Label Text="Make changes to your XAML file and save to see your UI rwgwrgwr in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+    <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+        <Label Text="Create Your Recipe" FontSize="Large" HorizontalOptions="CenterAndExpand" />
+        <Label Text="This free app will help you create your recipes easily" FontSize="Small" HorizontalOptions="CenterAndExpand" />
+
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Label Text="Recipe Title:" />
+                <Entry x:Name="TitleEntry" />
+
+                <Label Text="Description:" />
+                <Editor x:Name="DescriptionEditor" HeightRequest="100" />
+
+                <Label Text="Ingredients:" />
+                <Editor x:Name="IngredientsEditor" HeightRequest="100" />
+
+                <Label Text="Instructions:" />
+                <Editor x:Name="InstructionsEditor" HeightRequest="100" />
+
+                <Label Text="Image URL:" />
+                <Entry x:Name="ImageUrlEntry" />
+
+                <Label Text="Category:" />
+                <FlexLayout Wrap="Wrap" >
+                    <Button x:Name="BreakfastButton" Text="Breakfast" Clicked="OnCategorySelected" Style="{StaticResource ButtonStyle}"  />
+                    <Button x:Name="BrunchButton" Text="Brunch" Clicked="OnCategorySelected" Style="{StaticResource ButtonStyle}"  />
+                    <Button x:Name="LunchButton" Text="Lunch" Clicked="OnCategorySelected" Style="{StaticResource ButtonStyle}" />
+                    <Button x:Name="DinnerButton" Text="Dinner" Clicked="OnCategorySelected" Style="{StaticResource ButtonStyle}" />
+                    <Button x:Name="AppetizersButton" Text="Appetizers" Clicked="OnCategorySelected" Style="{StaticResource ButtonStyle}" />
+                    <Button x:Name="SoupsButton" Text="Soups" Clicked="OnCategorySelected" Style="{StaticResource ButtonStyle}"  />
+                </FlexLayout>
+                <StackLayout  Margin="10">
+                    <!-- Your content here -->
+                </StackLayout>
+
+                <Button x:Name="AddRecipeButton" Text="Add Recipe" Clicked="OnAddRecipeClicked" IsEnabled="False" />
+
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 
 </ContentPage>
