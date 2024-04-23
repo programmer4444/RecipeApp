@@ -6,12 +6,14 @@ using Xamarin.Forms;
 using RecipeApp.Models; 
 using Newtonsoft.Json;
 
+
 namespace RecipeApp
 {
     public partial class MainPage : ContentPage
     {
         private Xamarin.Forms.Button selectedButton = null;
         private bool isCategorySelected = false;
+        private readonly HttpClient httpClient = new HttpClient();
 
         public MainPage()
         {
@@ -85,27 +87,43 @@ namespace RecipeApp
         private void OnAddRecipeClicked(object sender, EventArgs e)
         {
             // Add your logic for when the "Add Recipe" button is clicked
-        }
 
+
+        }
         private async void OnGetAllRecipesClicked(object sender, EventArgs e)
         {
-            using (var httpClient = new HttpClient())
+            try
             {
-                var response = await httpClient.GetAsync("https://localhost:7068/api/Recipe");
+                // Make a GET request to your API endpoint to get all recipes
+                var response = await httpClient.GetAsync("https://your-api-url/api/Recipe");
 
+                // Check if the response is successful
                 if (response.IsSuccessStatusCode)
                 {
-                    //var json = await response.Content.ReadAsStringAsync();
-                    //var recipes = JsonConvert.DeserializeObject<List<RecipeTable>>(json);
-                    await DisplayAlert("Error", "Failed to fetch recipes!", "OK");
-                    // Handle the list of recipes as needed (e.g., display in a ListView)
+                    // Read the response content as a string
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    // Deserialize the JSON string into a list of recipes
+                    var recipes = JsonConvert.DeserializeObject<List<RecipeTable>>(content);
+
+                    // Display the recipes using a DisplayAlert
+                    var recipesString = string.Join("\n", recipes.Select(r => $"{r.Title}: {r.Description}"));
+                    await DisplayAlert("All Recipes", recipesString, "OK");
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Failed to fetch recipes!", "OK");
+                    // Handle unsuccessful response
+                    await DisplayAlert("Error", "Failed to retrieve recipes", "OK");
                 }
             }
-        }
-
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
     }
+
+
+
+}
 }
