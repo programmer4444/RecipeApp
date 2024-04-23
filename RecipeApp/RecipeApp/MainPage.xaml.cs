@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using Xamarin.Forms;
+using RecipeApp.Models; 
+using Newtonsoft.Json;
 
 namespace RecipeApp
 {
@@ -81,6 +85,26 @@ namespace RecipeApp
         private void OnAddRecipeClicked(object sender, EventArgs e)
         {
             // Add your logic for when the "Add Recipe" button is clicked
+        }
+
+        private async void OnGetAllRecipesClicked(object sender, EventArgs e)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var response = await httpClient.GetAsync("https://localhost:7068/api/Recipe");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    //var json = await response.Content.ReadAsStringAsync();
+                    //var recipes = JsonConvert.DeserializeObject<List<RecipeTable>>(json);
+                    await DisplayAlert("Error", "Failed to fetch recipes!", "OK");
+                    // Handle the list of recipes as needed (e.g., display in a ListView)
+                }
+                else
+                {
+                    await DisplayAlert("Error", "Failed to fetch recipes!", "OK");
+                }
+            }
         }
 
     }

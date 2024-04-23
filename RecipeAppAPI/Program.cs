@@ -1,14 +1,30 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using RecipeAppAPI.Models;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
+// Use Azure.Identity credentials to authenticate with Azure Key Vault
+var credential = new DefaultAzureCredential();
+
+// Create a SecretClient to access the Key Vault
+var keyVaultUri = new Uri("https://recipeappvault.vault.azure.net/");
+var client = new SecretClient(keyVaultUri, credential);
+
+// Retrieve the connection string from Azure Key Vault
+KeyVaultSecret secret = client.GetSecret("DefaultConnection");
+string connectionString = secret.Value;
+
 // Add DbContext to DI container
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(connectionString));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
