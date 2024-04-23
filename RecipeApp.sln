@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp.Android", "Recipe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp", "RecipeApp\RecipeApp\RecipeApp.csproj", "{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeAppAPI", "RecipeAppAPI\RecipeAppAPI.csproj", "{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
