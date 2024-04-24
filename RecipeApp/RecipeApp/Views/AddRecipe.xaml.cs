@@ -9,8 +9,8 @@ namespace RecipeApp.Views
 {
     public partial class AddRecipe : ContentPage
     {
-        private string selectedCategory;
-        private readonly HttpClient _httpClient;
+        public string selectedCategory;
+        public readonly HttpClient _httpClient;
 
         public AddRecipe()
         {
@@ -27,7 +27,7 @@ namespace RecipeApp.Views
 
         }
 
-   private void OnTextChanged(object sender, EventArgs e)
+        public void OnTextChanged(object sender, EventArgs e)
 {
     // Check if all fields are filled to enable the "Add Recipe" button
     bool isFieldsFilled = true;
@@ -56,7 +56,7 @@ namespace RecipeApp.Views
 }
 
 
-        private void OnCategoryButtonClicked(object sender, EventArgs e)
+        public void OnCategoryButtonClicked(object sender, EventArgs e)
         {
             // Reset the background color of all category buttons
             ResetCategoryButtonColors();
@@ -69,7 +69,7 @@ namespace RecipeApp.Views
             selectedButton.BackgroundColor = Color.LightBlue;
         }
 
-        private async void OnAddRecipeClicked(object sender, EventArgs e)
+        public async void OnAddRecipeClicked(object sender, EventArgs e)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace RecipeApp.Views
         }
 
         // Helper method to reset the background color of all category buttons
-        private void ResetCategoryButtonColors()
+        public void ResetCategoryButtonColors()
         {
             BreakfastButton.BackgroundColor = Color.Default;
             LunchButton.BackgroundColor = Color.Default;
