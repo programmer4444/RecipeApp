@@ -58,5 +58,26 @@ namespace RecipeAppAPI.Controllers
 
             return CreatedAtAction(nameof(GetRecipeById), new { id = recipe.RecipeId }, recipe);
         }
+        // GET: api/recipes/search?query={query}
+        [HttpGet("search")]
+        public IActionResult SearchRecipes(string query)
+        {
+            if (string.IsNullOrEmpty(query))
+            {
+                return BadRequest("Search query is empty");
+            }
+
+            var recipes = _dbContext.Recipes
+                .Where(r => r.Title.Contains(query) || r.Description.Contains(query))
+                .ToList();
+
+            if (recipes == null || !recipes.Any())
+            {
+                return NotFound("No recipes found matching the search query");
+            }
+
+            return Ok(recipes);
+        }
+
     }
 }
