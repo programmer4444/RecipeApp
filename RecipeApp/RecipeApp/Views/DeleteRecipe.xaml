@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="RecipeApp.Views.ItemsPage"
+             x:Class="RecipeApp.Views.DeleteRecipe"
              Title="{Binding Title}"
              x:Name="BrowseItemsPage">
 
@@ -9,14 +9,14 @@
         <StackLayout>
             <Entry x:Name="searchEntry" Placeholder="Enter search query" />
             <Button Text="Search" Clicked="OnSearchButtonClicked" />
-       
+
 
             <CollectionView x:Name="recipesCollectionView">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical" Span="1" />
-                    
+
                 </CollectionView.ItemsLayout>
-                
+
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
@@ -26,30 +26,25 @@
                                     <TapGestureRecognizer Tapped="OnImageTapped"/>
                                 </Image.GestureRecognizers>
                             </Image>
-                          
+
 
 
                             <Entry x:Name="titleEntry" Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" />
                             <Entry x:Name="descriptionEntry" Grid.Row="3" Text="{Binding Description}" FontAttributes="Bold" />
                             <Entry x:Name="ingredientsEntry" Grid.Row="4" Text="{Binding Ingredients}" FontAttributes="Bold" />
                             <Entry x:Name="instructionsEntry" Grid.Row="5" Text="{Binding Instructions}" FontAttributes="Bold" />
-             
 
 
-                            <!-- Button for updating recipe -->
-                            <Frame BorderColor="Gray" Padding="5" Margin="5">
-                                <Button Text="Update Recipe" Clicked="OnUpdateButtonClicked" />
-                            </Frame>
 
-                       
+                                <Button Text="Delete Recipe" Clicked="OnDeleteButtonClicked" BackgroundColor="Red" />
 
                         </Grid>
-                        
-                
+
+
                     </DataTemplate>
-                    
+
                 </CollectionView.ItemTemplate>
-                
+
             </CollectionView>
 
 
