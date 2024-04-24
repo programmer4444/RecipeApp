@@ -4,10 +4,18 @@
              x:Class="RecipeApp.Views.AboutPage"
              Title="{Binding Title}">
 
-
-    <StackLayout>
-        <!-- Add your "Hello World" text here -->
-        <Label Text="Hello World" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+    <StackLayout VerticalOptions="Start" Padding="0,20,0,0">
+        <Label Text="What recipe are you looking for today?" FontAttributes="Bold" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+        <ScrollView Orientation="Horizontal">
+            <StackLayout Orientation="Horizontal" Padding="5" Spacing="5" VerticalOptions="Start">
+                <Button x:Name="btnBreakfast" Text="Breakfast" Clicked="OnCategoryButtonClicked" />
+                <Button x:Name="btnLunch" Text="Lunch" Clicked="OnCategoryButtonClicked" />
+                <Button x:Name="btnDinner" Text="Dinner" Clicked="OnCategoryButtonClicked" />
+                <Button x:Name="btnDesserts" Text="Desserts" Clicked="OnCategoryButtonClicked" />
+                <Button x:Name="btnAppetizer" Text="Appetizer" Clicked="OnCategoryButtonClicked" />
+                <!-- Add more buttons here -->
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 
 </ContentPage>

@@ -35,5 +35,28 @@ namespace RecipeAppAPI.Controllers
             }
             return Ok(recipe);
         }
+        [HttpGet("category/{category}")]
+        public IActionResult GetRecipesByCategory(string category)
+        {
+            var recipes = _dbContext.Recipes.Where(r => r.Category == category).ToList();
+            if (recipes == null || !recipes.Any())
+            {
+                return NotFound();
+            }
+            return Ok(recipes);
+        }
+        [HttpPost]
+        public IActionResult AddRecipe([FromBody] Recipes recipe)
+        {
+            if (recipe == null)
+            {
+                return BadRequest("Recipe object is null");
+            }
+
+            _dbContext.Recipes.Add(recipe);
+            _dbContext.SaveChanges();
+
+            return CreatedAtAction(nameof(GetRecipeById), new { id = recipe.RecipeId }, recipe);
+        }
     }
 }
