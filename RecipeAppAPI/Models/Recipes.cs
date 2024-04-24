@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-public class RecipeTable
+public class Recipes
 {
     [Key]
     public int RecipeId { get; set; }

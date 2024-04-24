@@ -4,10 +4,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp.Android", "RecipeApp\RecipeApp.Android\RecipeApp.Android.csproj", "{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E} = {B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp", "RecipeApp\RecipeApp\RecipeApp.csproj", "{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApp", "RecipeApp\RecipeApp\RecipeApp.csproj", "{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeAppAPI", "RecipeAppAPI\RecipeAppAPI.csproj", "{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeAppAPI", "RecipeAppAPI\RecipeAppAPI.csproj", "{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

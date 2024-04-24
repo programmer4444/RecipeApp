@@ -2,7 +2,7 @@
 
 namespace RecipeApp.Models
 {
-    public class RecipeTable
+    public class Recipes
     {
         public int RecipeId { get; set; }
         public string Title { get; set; }

@@ -8,8 +8,6 @@
 
         <ScrollView>
             <StackLayout Padding="20">
-                <Button Text="Get All Recipes" Clicked="OnGetAllRecipesClicked"/>
-
                 <Label Text="Recipe Title:" />
                 <Entry x:Name="TitleEntry" />
 

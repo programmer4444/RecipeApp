@@ -5,7 +5,7 @@ using System.Net.Http;
 using Xamarin.Forms;
 using RecipeApp.Models; 
 using Newtonsoft.Json;
-
+using System.Threading.Tasks;
 
 namespace RecipeApp
 {
@@ -13,11 +13,12 @@ namespace RecipeApp
     {
         private Xamarin.Forms.Button selectedButton = null;
         private bool isCategorySelected = false;
-        private readonly HttpClient httpClient = new HttpClient();
+        private readonly HttpClient _httpClient = new HttpClient();
 
         public MainPage()
         {
             InitializeComponent();
+     
 
             // Assign event handlers to button click events
             BreakfastButton.Clicked += OnCategorySelected;
@@ -34,7 +35,6 @@ namespace RecipeApp
             InstructionsEditor.TextChanged += OnTextChanged;
             ImageUrlEntry.TextChanged += OnTextChanged;
         }
-
         private void OnCategorySelected(object sender, EventArgs e)
         {
             var button = sender as Xamarin.Forms.Button;
@@ -90,40 +90,15 @@ namespace RecipeApp
 
 
         }
-        private async void OnGetAllRecipesClicked(object sender, EventArgs e)
-        {
-            try
-            {
-                // Make a GET request to your API endpoint to get all recipes
-                var response = await httpClient.GetAsync("https://your-api-url/api/Recipe");
 
-                // Check if the response is successful
-                if (response.IsSuccessStatusCode)
-                {
-                    // Read the response content as a string
-                    var content = await response.Content.ReadAsStringAsync();
+        // Other methods and event handlers...
 
-                    // Deserialize the JSON string into a list of recipes
-                    var recipes = JsonConvert.DeserializeObject<List<RecipeTable>>(content);
-
-                    // Display the recipes using a DisplayAlert
-                    var recipesString = string.Join("\n", recipes.Select(r => $"{r.Title}: {r.Description}"));
-                    await DisplayAlert("All Recipes", recipesString, "OK");
-                }
-                else
-                {
-                    // Handle unsuccessful response
-                    await DisplayAlert("Error", "Failed to retrieve recipes", "OK");
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle any exceptions
-                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-            }
     }
 
+   
+       
+
 
 
 }
-}
+

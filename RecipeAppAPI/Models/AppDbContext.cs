@@ -4,7 +4,7 @@
 
     public class AppDbContext : DbContext
     {
-        public DbSet<RecipeTable> Recipes { get; set; }
+        public DbSet<Recipes> Recipes { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
