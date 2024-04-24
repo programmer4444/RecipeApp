@@ -130,6 +130,51 @@ namespace RecipeApp.Views
             }
         }
 
+        private async void OnDeleteButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the button that was clicked
+                Button button = (Button)sender;
+
+                // Get the corresponding item from the binding context
+                if (button.BindingContext is Recipes recipe)
+                {
+                    // Construct the delete endpoint URL
+                    string deleteEndpoint = $"https://recipeapp97.azurewebsites.net/recipe/{recipe.RecipeId}";
+
+                    // Send the delete request to the server
+                    var httpClient = new HttpClient();
+                    var response = await httpClient.DeleteAsync(deleteEndpoint);
+
+                    // Check if the delete was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        // Display success message
+                        await DisplayAlert("Success", "Recipe deleted successfully.", "OK");
+
+                        // Optionally, remove the item from the collection bound to the UI
+                        // recipesCollectionView.ItemsSource.Remove(recipe);
+                    }
+                    else
+                    {
+                        // Display error message if delete request fails
+                        await DisplayAlert("Error", "Failed to delete recipe.", "OK");
+                    }
+                }
+                else
+                {
+                    // Display error message for invalid item selected
+                    await DisplayAlert("Error", "Invalid item selected.", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Display error message for any other exceptions
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+
 
 
 
