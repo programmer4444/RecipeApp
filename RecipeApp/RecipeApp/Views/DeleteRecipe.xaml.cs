@@ -14,11 +14,11 @@ using Xamarin.Forms.Xaml;
 
 namespace RecipeApp.Views
 {
-    public partial class ItemsPage : ContentPage
+    public partial class DeleteRecipe : ContentPage
     {
         ItemsViewModel _viewModel;
         private readonly HttpClient _httpClient;
-        public ItemsPage()
+        public DeleteRecipe()
         {
             InitializeComponent();
             _httpClient = new HttpClient();
@@ -77,7 +77,8 @@ namespace RecipeApp.Views
                 await DisplayAlert("Error", "Invalid item selected", "OK");
             }
         }
-        private async void OnUpdateButtonClicked(object sender, EventArgs e)
+     
+        private async void OnDeleteButtonClicked(object sender, EventArgs e)
         {
             try
             {
@@ -85,52 +86,42 @@ namespace RecipeApp.Views
                 Button button = (Button)sender;
 
                 // Get the corresponding item from the binding context
-                if (button.BindingContext is Recipes item)
+                if (button.BindingContext is Recipes recipe)
                 {
-                    await DisplayAlert("Ingredients", $"Ingredients: {item.ImageUrl}", "OK");
-                    await DisplayAlert("Instructions", $"Instructions: {item.Category}", "OK");
+                    // Construct the delete endpoint URL
+                    string deleteEndpoint = $"https://recipeapp97.azurewebsites.net/recipe/{recipe.RecipeId}";
 
-                    // Create the update endpoint URL
-                    string updateEndpoint = $"https://recipeapp97.azurewebsites.net/recipe/{item.RecipeId}";
-
-                    // Create a new Recipes object with the updated data
-                    Recipes updatedRecipe = new Recipes
-                    {
-                        RecipeId = item.RecipeId, // No need to convert RecipeId to string
-                        Title = item.Title,
-                        Description = item.Description,
-                        Ingredients = item.Ingredients,
-                        Instructions = item.Instructions,
-                        Category = item.Category,
-                        ImageUrl = item.ImageUrl
-                    };
-
-                    // Serialize the updatedRecipe object to JSON
-                    var json = JsonConvert.SerializeObject(updatedRecipe);
-                    var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                    // Send the updated data to the server for updating
+                    // Send the delete request to the server
                     var httpClient = new HttpClient();
-                    var response = await httpClient.PutAsync(updateEndpoint, content);
+                    var response = await httpClient.DeleteAsync(deleteEndpoint);
 
-                    // Check if the update was successful
+                    // Check if the delete was successful
                     if (response.IsSuccessStatusCode)
                     {
-                        await DisplayAlert("Success", "Recipe updated successfully.", "OK");
+                        // Display success message
+                        await DisplayAlert("Success", "Recipe deleted successfully.", "OK");
+
+                        // Optionally, remove the item from the collection bound to the UI
+                        // recipesCollectionView.ItemsSource.Remove(recipe);
                     }
                     else
                     {
-                        await DisplayAlert("Error", "Failed to update recipe.", "OK");
+                        // Display error message if delete request fails
+                        await DisplayAlert("Error", "Failed to delete recipe.", "OK");
                     }
+                }
+                else
+                {
+                    // Display error message for invalid item selected
+                    await DisplayAlert("Error", "Invalid item selected.", "OK");
                 }
             }
             catch (Exception ex)
             {
+                // Display error message for any other exceptions
                 await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
         }
-
-     
 
 
 

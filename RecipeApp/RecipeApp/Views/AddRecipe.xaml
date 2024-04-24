@@ -5,11 +5,46 @@
              x:Class="RecipeApp.Views.AddRecipe"
              Title="Add Recipe">
 
-    <StackLayout>
-        <Button Text="Get All Recipes"
-                Clicked="OnGetAllRecipesClicked"
-                HorizontalOptions="CenterAndExpand"
-                VerticalOptions="CenterAndExpand"/>
-    </StackLayout>
+    <ScrollView>
+        <StackLayout Padding="0,20,0,0" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+            <Label Text="Create Your Recipe" FontSize="Large" HorizontalOptions="CenterAndExpand" />
+            <Label Text="This free app will help you create your recipes easily" FontSize="Small" HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout Padding="20">
+                <Label Text="Recipe Title:" />
+                <Entry x:Name="TitleEntry" TextChanged="OnTextChanged" />
+
+                <Label Text="Description:" />
+                <Editor x:Name="DescriptionEditor" HeightRequest="100" TextChanged="OnTextChanged" />
+
+                <Label Text="Ingredients:" />
+                <Editor x:Name="IngredientsEditor" HeightRequest="100" TextChanged="OnTextChanged" />
+
+                <Label Text="Instructions:" />
+                <Editor x:Name="InstructionsEditor" HeightRequest="100" TextChanged="OnTextChanged" />
+
+                <Label Text="Image URL:" />
+                <Entry x:Name="ImageUrlEntry" TextChanged="OnTextChanged" />
+
+
+                <Label Text="Category:" />
+                <FlexLayout Wrap="Wrap" >
+                    <Button x:Name="BreakfastButton" Text="Breakfast" Clicked="OnCategoryButtonClicked" />
+                    <Button x:Name="LunchButton" Text="Lunch" Clicked="OnCategoryButtonClicked" />
+                    <Button x:Name="DinnerButton" Text="Dinner" Clicked="OnCategoryButtonClicked" />
+                    <Button x:Name="AppetizerButton" Text="Appetizers" Clicked="OnCategoryButtonClicked" />
+                    <Button x:Name="DessertsButton" Text="Desserts" Clicked="OnCategoryButtonClicked" />
+
+
+                </FlexLayout>
+
+   <Button x:Name="AddRecipeButton" Text="Add Recipe" Clicked="OnAddRecipeClicked" IsEnabled="False" />
+
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+
 
 </ContentPage>
+    
+    

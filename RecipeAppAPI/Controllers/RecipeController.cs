@@ -48,18 +48,24 @@ namespace RecipeAppAPI.Controllers
 
 
         [HttpPost]
-        public IActionResult AddRecipe([FromBody] Recipes recipe)
+        public IActionResult AddRecipe([FromBody] Recipes newRecipe)
         {
-            if (recipe == null)
+            try
             {
-                return BadRequest("Recipe object is null");
+                // Add the new recipe to the database
+                _dbContext.Recipes.Add(newRecipe);
+                _dbContext.SaveChanges();
+
+                // Return the newly created recipe along with the 201 Created status code
+                return CreatedAtAction(nameof(GetRecipeById), new { id = newRecipe.RecipeId }, newRecipe);
             }
-
-            _dbContext.Recipes.Add(recipe);
-            _dbContext.SaveChanges();
-
-            return CreatedAtAction(nameof(GetRecipeById), new { id = recipe.RecipeId }, recipe);
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during addition
+                return StatusCode(500, $"An error occurred while adding the recipe: {ex.Message}");
+            }
         }
+
         // GET: api/recipes/search?query={query}
         [HttpGet("search")]
         public IActionResult SearchRecipes(string query)
@@ -132,6 +138,7 @@ namespace RecipeAppAPI.Controllers
                 return StatusCode(500, $"An error occurred while deleting the recipe: {ex.Message}");
             }
         }
+
 
     }
 }
