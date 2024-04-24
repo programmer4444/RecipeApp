@@ -24,18 +24,28 @@
                             </Image>
 
                             <!-- Replace Entry with Editor for multiline text input -->
-                            <Editor Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" />
-                            <Editor Grid.Row="2" Text="{Binding Category}" FontAttributes="Bold" />
-                            <Editor Grid.Row="3" Text="{Binding Description}" FontAttributes="Bold" />
-                            <Editor Grid.Row="4" Text="{Binding Ingredients}" FontAttributes="Bold" />
-                            <Editor Grid.Row="5" Text="{Binding Instructions}" FontAttributes="Bold" />
+
+                            <Entry x:Name="titleEntry" Grid.Row="1" Text="{Binding Title}" FontAttributes="Bold" />
+                            <Entry x:Name="descriptionEntry" Grid.Row="3" Text="{Binding Description}" FontAttributes="Bold" />
+                            <Entry x:Name="ingredientsEntry" Grid.Row="4" Text="{Binding Ingredients}" FontAttributes="Bold" />
+                            <Entry x:Name="instructionsEntry" Grid.Row="5" Text="{Binding Instructions}" FontAttributes="Bold" />
+                            <Button Text="Update Recipe" Clicked="OnUpdateButtonClicked" />
+
+                            <!-- Button for updating recipe -->
                             <!-- Add an Update Button -->
                         </Grid>
                     </DataTemplate>
+                    
                 </CollectionView.ItemTemplate>
+                
             </CollectionView>
+
+
+
         </StackLayout>
+
     </ScrollView>
+
 
 
 

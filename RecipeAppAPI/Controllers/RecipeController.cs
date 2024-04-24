@@ -80,6 +80,32 @@ namespace RecipeAppAPI.Controllers
 
             return Ok(recipes);
         }
+        [HttpPut("{id}")]
+        public IActionResult UpdateRecipe(int id, [FromBody] Recipes updatedRecipe)
+        {
+            if (updatedRecipe == null || id != updatedRecipe.RecipeId)
+            {
+                return BadRequest("Invalid data provided for recipe update.");
+            }
+
+            var existingRecipe = _dbContext.Recipes.Find(id);
+            if (existingRecipe == null)
+            {
+                return NotFound("Recipe not found.");
+            }
+
+            // Update properties of the existing recipe entity
+            existingRecipe.Title = updatedRecipe.Title;
+            existingRecipe.Description = updatedRecipe.Description;
+            existingRecipe.Category = updatedRecipe.Category;
+            existingRecipe.Ingredients = updatedRecipe.Ingredients;
+            existingRecipe.Instructions = updatedRecipe.Instructions;
+
+            _dbContext.SaveChanges();
+
+            return Ok("Recipe updated successfully.");
+        }
+
 
     }
 }
