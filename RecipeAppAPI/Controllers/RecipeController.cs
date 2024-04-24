@@ -106,6 +106,32 @@ namespace RecipeAppAPI.Controllers
             return Ok("Recipe updated successfully.");
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult DeleteRecipe(int id)
+        {
+            // Find the recipe with the provided id
+            var recipe = _dbContext.Recipes.Find(id);
+
+            // Check if the recipe exists
+            if (recipe == null)
+            {
+                return NotFound("Recipe not found.");
+            }
+
+            try
+            {
+                // Remove the recipe from the database
+                _dbContext.Recipes.Remove(recipe);
+                _dbContext.SaveChanges();
+
+                return Ok("Recipe deleted successfully.");
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions that occur during deletion
+                return StatusCode(500, $"An error occurred while deleting the recipe: {ex.Message}");
+            }
+        }
 
     }
 }
