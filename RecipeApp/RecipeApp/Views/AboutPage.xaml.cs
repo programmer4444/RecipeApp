@@ -11,7 +11,7 @@ namespace RecipeApp.Views
 {
     public partial class AboutPage : ContentPage
     {
-        private readonly HttpClient _httpClient;
+        public readonly HttpClient _httpClient;
 
         public AboutPage()
         {
@@ -20,7 +20,7 @@ namespace RecipeApp.Views
         }
 
 
-        private async void OnCategoryButtonClicked(object sender, EventArgs e)
+        public async void OnCategoryButtonClicked(object sender, EventArgs e)
         {
             if (sender is Button button)
             {
@@ -46,7 +46,7 @@ namespace RecipeApp.Views
                 }
             }
         }
-        private async void OnImageTapped(object sender, EventArgs e)
+        public async void OnImageTapped(object sender, EventArgs e)
         {
             // Handle the image tap event here
             // You can access the tapped image data or perform any desired action
@@ -63,9 +63,9 @@ namespace RecipeApp.Views
         }
 
 
-        
 
-    private async Task<List<Recipes>> GetRecipesByCategoryAsync(string category)
+
+        public async Task<List<Recipes>> GetRecipesByCategoryAsync(string category)
         {
             try
             {
