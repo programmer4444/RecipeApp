@@ -63,44 +63,7 @@ namespace RecipeApp.Views
         }
 
 
-        private async void OnSearchButtonClicked(object sender, EventArgs e)
-        {
-            // Get the search query entered by the user
-            string query = searchEntry.Text;
-
-            // Check if the search query is not empty or whitespace
-            if (!string.IsNullOrWhiteSpace(query))
-            {
-                // Perform the search operation using the provided query
-                string apiUrl = $"https://recipeapp97.azurewebsites.net/recipe/search?query={Uri.EscapeDataString(query)}";
-                var response = await _httpClient.GetAsync(apiUrl);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    var content = await response.Content.ReadAsStringAsync();
-                    var recipes = JsonConvert.DeserializeObject<List<Recipes>>(content);
-
-                    if (recipes != null && recipes.Any())
-                    {
-                        recipesCollectionView.ItemsSource = recipes;
-                    }
-                    else
-                    {
-                        await DisplayAlert("No Recipes", "No recipes found for the search query", "OK");
-                    }
-                }
-                else
-                {
-                    await DisplayAlert("Error", "Failed to search for recipes", "OK");
-                }
-            }
-            else
-            {
-                // Display an error message indicating that the search query is empty
-                await DisplayAlert("Error", "Please enter a search query", "OK");
-            }
-        }
-
+        
 
     private async Task<List<Recipes>> GetRecipesByCategoryAsync(string category)
         {
