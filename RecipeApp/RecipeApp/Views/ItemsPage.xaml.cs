@@ -77,6 +77,62 @@ namespace RecipeApp.Views
                 await DisplayAlert("Error", "Invalid item selected", "OK");
             }
         }
+        private async void OnUpdateButtonClicked(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get the button that was clicked
+                Button button = (Button)sender;
+
+                // Get the corresponding item from the binding context
+                if (button.BindingContext is Recipes item)
+                {
+                    await DisplayAlert("Ingredients", $"Ingredients: {item.ImageUrl}", "OK");
+                    await DisplayAlert("Instructions", $"Instructions: {item.Category}", "OK");
+
+                    // Create the update endpoint URL
+                    string updateEndpoint = $"https://recipeapp97.azurewebsites.net/recipe/{item.RecipeId}";
+
+                    // Create a new Recipes object with the updated data
+                    Recipes updatedRecipe = new Recipes
+                    {
+                        RecipeId = item.RecipeId, // No need to convert RecipeId to string
+                        Title = item.Title,
+                        Description = item.Description,
+                        Ingredients = item.Ingredients,
+                        Instructions = item.Instructions,
+                        Category = item.Category,
+                        ImageUrl = item.ImageUrl
+                    };
+
+                    // Serialize the updatedRecipe object to JSON
+                    var json = JsonConvert.SerializeObject(updatedRecipe);
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    // Send the updated data to the server for updating
+                    var httpClient = new HttpClient();
+                    var response = await httpClient.PutAsync(updateEndpoint, content);
+
+                    // Check if the update was successful
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await DisplayAlert("Success", "Recipe updated successfully.", "OK");
+                    }
+                    else
+                    {
+                        await DisplayAlert("Error", "Failed to update recipe.", "OK");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+            }
+        }
+
+
+
+
 
 
     }
