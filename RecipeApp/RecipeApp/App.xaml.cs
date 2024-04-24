@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RecipeApp.Services;
+using RecipeApp.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,12 +8,13 @@ namespace RecipeApp
 {
     public partial class App : Application
     {
+
         public App()
         {
             InitializeComponent();
 
-            //MainPage = new MainPage();
-            MainPage = new HomePage();
+            DependencyService.Register<MockDataStore>();
+            MainPage = new AppShell();
         }
 
         protected override void OnStart()
