@@ -3,14 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp.Android", "RecipeApp\RecipeApp.Android\RecipeApp.Android.csproj", "{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}"
-	ProjectSection(ProjectDependencies) = postProject
-		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E} = {B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeApp", "RecipeApp\RecipeApp\RecipeApp.csproj", "{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RecipeAppAPI", "RecipeAppAPI\RecipeAppAPI.csproj", "{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp.Android", "RecipeApp\RecipeApp.Android\RecipeApp.Android.csproj", "{0539AD12-C2B5-4899-8DD6-D1C138462424}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp", "RecipeApp\RecipeApp\RecipeApp.csproj", "{1B79C374-18FB-49FD-BC18-B3B9F6CE3CC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,22 +15,20 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5D9E42D0-17E2-4E25-9EF5-1F09E0BD0162}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A7FD934E-3182-4CF2-87C2-854DEC37E4E7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8CC659E-89EE-43C4-8AAB-71DB3121AB8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0539AD12-C2B5-4899-8DD6-D1C138462424}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0539AD12-C2B5-4899-8DD6-D1C138462424}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0539AD12-C2B5-4899-8DD6-D1C138462424}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0539AD12-C2B5-4899-8DD6-D1C138462424}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0539AD12-C2B5-4899-8DD6-D1C138462424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0539AD12-C2B5-4899-8DD6-D1C138462424}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{1B79C374-18FB-49FD-BC18-B3B9F6CE3CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B79C374-18FB-49FD-BC18-B3B9F6CE3CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B79C374-18FB-49FD-BC18-B3B9F6CE3CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B79C374-18FB-49FD-BC18-B3B9F6CE3CC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
